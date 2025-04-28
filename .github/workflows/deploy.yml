@@ -3,7 +3,7 @@ name: Deploy Unity Assets
 on:
   push:
     branches:
-      - main
+      - main  # mainブランチにpushされたら動く
 
 jobs:
   deploy-assets:
@@ -24,4 +24,8 @@ jobs:
           username: geranium
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            rsync -avz deploy_targets/ /var/www/html/Geranium_isu/ISU_Kuuzanomuki/Unity_project_ISU/Assets/
+            if [ "$(ls -A deploy_targets)" ]; then
+              rsync -avz deploy_targets/ /var/www/html/Geranium_isu/ISU_Kuuzanomuki/Unity_project_ISU/Assets/ && echo "Upload successful!"
+            else
+              echo "No data to upload by file server."
+            fi
