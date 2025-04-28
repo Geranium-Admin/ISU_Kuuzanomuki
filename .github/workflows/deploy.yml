@@ -1,0 +1,27 @@
+name: Deploy Unity Assets
+
+on:
+  push:
+    branches:
+      - main  # あなたが使ってるブランチ
+
+jobs:
+  deploy-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Find and Upload Non-Script Assets
+        run: |
+          mkdir deploy_targets
+          find Assets \( ! -name "*.cs" \) -type f -exec cp --parents {} deploy_targets/ \;
+      
+      - name: Upload to server
+        uses: appleboy/ssh-action@v0.1.6
+        with:
+          host: kagoya-sarver.geranium-games.jp
+          username: geranium
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            rsync -avz deploy_targets/ /var/www/html/Geranium_isu/ISU_Kuuzanomuki/Assets/
