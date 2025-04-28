@@ -1,27 +1,116 @@
-# Builds
+# ==========================
+# Unity用 .gitignore 完全版
+# （Myプロジェクト直下に設置）
+# ==========================
+
+########################################
+# OS・エディタ共通：不要ファイルを無視
+########################################
+
+# macOSのゴミファイル
+.DS_Store
+
+# Windowsのサムネイルキャッシュ
+Thumbs.db
+
+# Visual Studio / VSCodeなどのIDE設定ファイル
+.vs/
+.idea/
+*.csproj
+*.sln
+*.user
+*.suo
+*.tmp
+*.userprefs
+
+# JetBrains Rider系の不要ファイル
+*.pidb
+*.booproj
+*.svd
+
+# Unity Hubのメタ情報
+*.unityhub
+
+########################################
+# Unity固有：無視すべき一時データ・キャッシュ
+########################################
+
+# Unityのビルドキャッシュやライブラリ
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+Logs/
+MemoryCaptures/
+
+# Unity Collaborate用の一時ファイル
+.collabignore
+.collab/
+
+# Asset Storeからのダウンロードキャッシュ
+Assets/AssetStoreTools*
+
+########################################
+# Addressables関連の一時ファイル
+########################################
+
+Assets/AddressableAssetsData/*/*.bin*
+Assets/StreamingAssets/aa.meta
+Assets/StreamingAssets/aa/*
+
+########################################
+# モバイルビルド関連ファイル
+########################################
+
 *.apk
 *.aab
-*.unitypackage
-*.unitypackage.meta
+*.ipa
+*.xcodeproj
+*.xcworkspace
 *.app
 
-# Crashlytics generated file
+########################################
+# Unityパッケージファイル
+########################################
+
+*.unitypackage
+*.unitypackage.meta
+
+########################################
+# Crashlytics自動生成ファイル
+########################################
+
 crashlytics-build.properties
 
-# Packed Addressables
-/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
+########################################
+# Assetsの中の素材ファイルを無視（別管理）
+########################################
 
-# Temporary auto-generated Android Assets
-/[Aa]ssets/[Ss]treamingAssets/aa.meta
-/[Aa]ssets/[Ss]treamingAssets/aa/*
+# モデルデータ
+Assets/Models/
 
+# テクスチャ・画像
+Assets/Textures/
 
+# サウンド・音声データ
+Assets/Sounds/
 
-# Assets内のスクリプト以外を無視する
-/[Aa]ssets/Models/
-/[Aa]ssets/Textures/
-/[Aa]ssets/Sounds/
-/[Aa]ssets/Prefabs/
-/[Aa]ssets/Materials/
-/[Aa]ssets/Animations/
-/[Aa]ssets/Fonts/
+# プレハブ
+Assets/Prefabs/
+
+# マテリアル
+Assets/Materials/
+
+# アニメーション
+Assets/Animations/
+
+# フォント
+Assets/Fonts/
+
+########################################
+# その他のUnity一時ファイル
+########################################
+
+# シェーダーキャッシュ
+Assets/**/*.shadercache
